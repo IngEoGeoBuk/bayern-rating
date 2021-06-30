@@ -33,3 +33,8 @@ export interface idBoardTypes {
     players: playerTypes,
     ratings: ratingTypes
 }
+
+export interface OptionType {
+    label: string,
+    value: number,
+}

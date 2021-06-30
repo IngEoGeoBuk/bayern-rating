@@ -3,13 +3,14 @@ import React from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import { Paper, Card, Grid, Typography, OutlinedInput, Button } from '@material-ui/core';
-import Select from 'react-select';
+import Select, { ValueType } from "react-select";
 import fetch from 'isomorphic-unfetch'
 import styles from '../styles/Detail.module.css'
-import { ratingTypes, idBoardTypes } from '../types';
+import { GetServerSideProps } from 'next'
+import { ratingTypes, idBoardTypes, OptionType } from '../types';
 
-export const getServerSideProps = async (context: any) => {
-    const id = context.params.id;
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    const id = context?.params?.id;
     const res = await fetch(`${process.env.SERVER_URL}/api/players/${id}`, {
         method: 'GET',
         headers: {
@@ -30,7 +31,7 @@ export const getServerSideProps = async (context: any) => {
     return {
         props: { 
             players: data.data,
-            ratings: data2.data 
+            ratings: data2.data
         }
     }
 }
@@ -86,20 +87,23 @@ const Details = ({ players, ratings }: idBoardTypes) => {
     const [yourRatingInfo, setYourRatingInfo] = useState<ratingTypes[]>([]);
 
     // 별점과 댓글내용 // 
-    const selectRatings = [
+    const options: OptionType[] = [
         { value: 5, label: '★★★★★'}, 
         { value: 4, label: '★★★★☆'}, 
         { value: 3, label: '★★★☆☆'}, 
         { value: 2, label: '★★☆☆☆'}, 
-        { value: 1, label: '★☆☆☆☆'}];
-    const options = selectRatings.map((v) => ({ value: v.value, label: v.label }))
-    const onchangeSelect = (item: any) => {
-      setSelectedRating(item);
-    };
+        { value: 1, label: '★☆☆☆☆'}
+    ]
+
     const labels = ['★☆☆☆☆', '★★☆☆☆', '★★★☆☆', '★★★★☆', '★★★★★']
-    const [selectedRating, setSelectedRating] = useState(options[0]);
+    const [selectedRating, setSelectedRating] = useState<ValueType<OptionType, false>>(options[0]);
     const [contents, setContents] = useState<string>("");
     const [ratingList, setRatingList] = useState<ratingTypes[] | any>(ratings);
+
+    const onchangeSelect = (item: ValueType<OptionType, false>) => {
+        setSelectedRating(item);
+    };
+
 
     const addRating = async () => {
         if(!isLogin) {
@@ -116,7 +120,7 @@ const Details = ({ players, ratings }: idBoardTypes) => {
                         poId, 
                         email: yourEmail, 
                         contents, 
-                        rating: selectedRating.value 
+                        rating: selectedRating!.value 
                     })
                 })
                 const data = await res.json();
@@ -127,7 +131,7 @@ const Details = ({ players, ratings }: idBoardTypes) => {
                         poId, 
                         email: yourEmail, 
                         contents, 
-                        rating: selectedRating.value,
+                        rating: selectedRating!.value,
                     },
                 ]);
                 setYourRatingInfo([
@@ -137,11 +141,11 @@ const Details = ({ players, ratings }: idBoardTypes) => {
                         poId,
                         email : yourEmail, 
                         contents, 
-                        rating: selectedRating.value
+                        rating: selectedRating!.value
                     }
                 ])
                 setIsYourRatings(true);
-                setSelectedRating(options[5-selectedRating.value]);
+                setSelectedRating(options[5-selectedRating!.value]);
             } catch (error) {
                 console.log(error);
             }            
@@ -178,7 +182,7 @@ const Details = ({ players, ratings }: idBoardTypes) => {
                 "Accept": "application/json",
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ contents, rating: selectedRating.value })
+            body: JSON.stringify({ contents, rating: selectedRating!.value })
         });
         const data = await res.json();
         setRatingList(ratingList.map((val : ratingTypes) => {
@@ -233,7 +237,7 @@ const Details = ({ players, ratings }: idBoardTypes) => {
                         </Typography>
                         <Select
                             value={selectedRating}
-                            onChange={onchangeSelect}
+                            onChange={option => onchangeSelect(option)}
                             options={options}
                             getOptionValue={(option) => String(option.value)}
                             getOptionLabel={(option) => option.label}

@@ -1,5 +1,5 @@
 import { Button } from '@material-ui/core';
-import { GoogleLogin, GoogleLogout } from 'react-google-login'; 
+import { GoogleLogin, GoogleLogout, GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
 import { useEffect, useState } from 'react';
 import fetch from 'isomorphic-unfetch'
 
@@ -28,22 +28,24 @@ const G_Login = () => {
         checkLogin();
     }, [])
 
-    const responseGoogle = async (res: any) => {
-        const profile = await res.getBasicProfile();
-        const email = profile.getEmail();
-        setYourEmail(email);
-        try {
-            const res = await fetch(`${process.env.SERVER_URL}/api/login/login`, {
-                method: 'POST',
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ email })
-            })
-            window.location.reload();
-        } catch (error) {
-            console.log(error);
+    const responseGoogle = async (res: GoogleLoginResponse | GoogleLoginResponseOffline) => {
+        if ('googleId' in res) {
+            const profile = await res.getBasicProfile();
+            const email = profile.getEmail();
+            setYourEmail(email);
+            try {
+                const res = await fetch(`${process.env.SERVER_URL}/api/login/login`, {
+                    method: 'POST',
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email })
+                })
+                window.location.reload();
+            } catch (error) {
+                console.log(error);
+            }
         }
     }
 
