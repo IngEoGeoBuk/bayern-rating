@@ -3,14 +3,14 @@ import dbConnect from "../../../utils/dbConnect";
 import { Player } from '../../../models/Player';
 import { ModelPlayerType } from '../../../types'
 
-interface dataTypes {
+interface DataType {
     data?: ModelPlayerType[]
     success: boolean,
 }
 
 dbConnect();
 
-export default async (req: NextApiRequest, res: NextApiResponse<dataTypes>) => {
+export default async (req: NextApiRequest, res: NextApiResponse<DataType>) => {
     const { method } = req;
 
     switch(method) {

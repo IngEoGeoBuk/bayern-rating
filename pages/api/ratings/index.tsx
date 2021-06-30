@@ -3,14 +3,14 @@ import dbConnect from "../../../utils/dbConnect";
 import { Rating } from '../../../models/Rating.js';
 import { ModelRatingType } from '../../../types'
 
-interface dataTypes {
+interface DataType {
     data?: ModelRatingType[]
     success: boolean,
 }
 
 dbConnect();
 
-export default async (req: NextApiRequest, res: NextApiResponse<dataTypes> ) => {
+export default async (req: NextApiRequest, res: NextApiResponse<DataType> ) => {
     const { method } = req;
 
     switch(method) {

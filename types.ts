@@ -1,4 +1,4 @@
-export interface emailTypes {
+export interface EmailType {
     email: string | string[],
 }
 

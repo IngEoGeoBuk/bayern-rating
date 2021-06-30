@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { emailTypes } from '../../../types'
+import { EmailType } from '../../../types'
 
-export default (req: NextApiRequest, res: NextApiResponse<emailTypes>) => {
+export default (req: NextApiRequest, res: NextApiResponse<EmailType>) => {
     res.statusCode = 200;
     res.json({ email: req.query.email });
 }

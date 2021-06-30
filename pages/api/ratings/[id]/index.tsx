@@ -3,14 +3,14 @@ import dbConnect from "../../../../utils/dbConnect";
 import { Rating } from '../../../../models/Rating';
 import { ModelRatingType } from '../../../../types'
 
-interface dataTypes {
+interface DataType {
     data?: ModelRatingType[] | ModelRatingType
     success: boolean,
 }
 
 dbConnect();
 
-export default async (req: NextApiRequest, res: NextApiResponse<dataTypes>) => {
+export default async (req: NextApiRequest, res: NextApiResponse<DataType>) => {
     const {
         query: { id },
         method
@@ -21,7 +21,6 @@ export default async (req: NextApiRequest, res: NextApiResponse<dataTypes>) => {
         case 'GET':
             try {
                 const ratings = await Rating.find({ "poId" : {$in: [ (`${id}`)]} })!;
-                // const ratings = await Rating.find();
                 if (!ratings) {
                     return res.status(400).json({ success: false });
                 }

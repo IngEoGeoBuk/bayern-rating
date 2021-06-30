@@ -3,14 +3,14 @@ import { Rating } from '../../../models/Rating';
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { GradeType } from '../../../types'
  
-interface dataTypes {
+interface DataType {
     data?: GradeType[],
     success: boolean,
 }
 
 dbConnect();
 
-export default async (req: NextApiRequest, res: NextApiResponse<dataTypes> ) => {
+export default async (req: NextApiRequest, res: NextApiResponse<DataType> ) => {
     const { method } = req;
 
     switch(method) {

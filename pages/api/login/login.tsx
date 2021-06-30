@@ -1,12 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { emailTypes } from '../../../types'
+import { EmailType } from '../../../types'
 
-interface dataTypes {
-    email?: emailTypes
+interface DataType {
+    email?: EmailType
     message: string,
 }
 
-export default (req: NextApiRequest, res: NextApiResponse<dataTypes>) => {
+export default (req: NextApiRequest, res: NextApiResponse<DataType>) => {
     if(req.method === "POST") {
         const email = req.body.email;
         res.setHeader("Set-Cookie", `email=${email};Max-Age=36000;Secure`);
