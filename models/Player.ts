@@ -1,6 +1,6 @@
 import mongoose, { Document, model, Model, Schema } from "mongoose"
 
-export interface playerTypes extends Document {
+export interface PlayerType extends Document {
     no: number,
     name: string,
     img: string
@@ -21,4 +21,4 @@ const PlayerSchema: Schema = new Schema({
     },
 });
 
-export const Player: Model<playerTypes> = mongoose.models.Player || model('Player', PlayerSchema);
+export const Player: Model<PlayerType> = mongoose.models.Player || model('Player', PlayerSchema);

@@ -2,20 +2,20 @@ export interface emailTypes {
     email: string | string[],
 }
 
-export interface playerTypes {
+export interface PlayerType {
     _id: string,
     no: number,
     name: string,
     img: string
 }
 
-export interface modelPlayerTypes {
+export interface ModelPlayerType {
     no: number,
     name: string,
     img: string
 }
 
-export interface ratingTypes {
+export interface RatingType {
     _id: string,
     poId: string,
     email: string,
@@ -24,7 +24,7 @@ export interface ratingTypes {
     __v?: number,
 }
 
-export interface modelRatingTypes {
+export interface ModelRatingType {
     poId: string,
     email: string,
     contents: string,
@@ -32,20 +32,20 @@ export interface modelRatingTypes {
     __v?: number,
 }
 
-export interface gradeTypes {
+export interface GradeType {
     _id: string,
     total: number,
     count: number,
 }
 
-export interface boardTypes {
-    players: playerTypes[],
-    grades: gradeTypes[]
+export interface BoardType {
+    players: PlayerType[],
+    grades: GradeType[]
 }
 
-export interface idBoardTypes {
-    players: playerTypes,
-    ratings: ratingTypes
+export interface IdBoardType {
+    players: PlayerType,
+    ratings: RatingType[]
 }
 
 export interface OptionType {

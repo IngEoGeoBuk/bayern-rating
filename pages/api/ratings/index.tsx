@@ -1,10 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import dbConnect from "../../../utils/dbConnect";
 import { Rating } from '../../../models/Rating.js';
-import { modelRatingTypes } from '../../../types'
+import { ModelRatingType } from '../../../types'
 
 interface dataTypes {
-    data?: modelRatingTypes[]
+    data?: ModelRatingType[]
     success: boolean,
 }
 

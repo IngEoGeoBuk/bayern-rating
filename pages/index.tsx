@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Paper, Card, Grid, Typography } from '@material-ui/core';
 import fetch from 'isomorphic-unfetch'
-import { gradeTypes, boardTypes } from '../types';
+import { GradeType, BoardType } from '../types';
 import styles from '../styles/Home.module.css'
 
 export const getServerSideProps = async () => {
@@ -33,8 +33,8 @@ export const getServerSideProps = async () => {
   }
 }
 
-const Home = ({ players, grades } : boardTypes ) => {
-  const [gradeList, setGradeList] = useState<gradeTypes[]>(grades);
+const Home = ({ players, grades } : BoardType ) => {
+  const [gradeList, setGradeList] = useState<GradeType[]>(grades);
 
   return (
     <Paper>
@@ -53,7 +53,7 @@ const Home = ({ players, grades } : boardTypes ) => {
                   <Image src={player.img} width={125} height={320} />
                   <br/>
                   <>
-                    {gradeList.map((grade: gradeTypes) => {
+                    {gradeList.map((grade: GradeType) => {
                       return (
                         <div key={grade._id}>
                             {grade._id === player._id ? 

@@ -1,10 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import dbConnect from "../../../utils/dbConnect";
 import { Player } from '../../../models/Player';
-import { modelPlayerTypes } from '../../../types'
+import { ModelPlayerType } from '../../../types'
  
 interface dataTypes {
-    data?: modelPlayerTypes
+    data?: ModelPlayerType
     success: boolean,
 }
 

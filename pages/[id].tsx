@@ -7,7 +7,7 @@ import Select, { ValueType } from "react-select";
 import fetch from 'isomorphic-unfetch'
 import styles from '../styles/Detail.module.css'
 import { GetServerSideProps } from 'next'
-import { ratingTypes, idBoardTypes, OptionType } from '../types';
+import { RatingType, IdBoardType, OptionType } from '../types';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const id = context?.params?.id;
@@ -36,7 +36,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
 }
 
-const Details = ({ players, ratings }: idBoardTypes) => {
+const Details = ({ players, ratings }: IdBoardType) => {
     const poId = players._id
 
     // 로그인 체크 //
@@ -84,7 +84,7 @@ const Details = ({ players, ratings }: idBoardTypes) => {
 
     // 너가 평가 남겼는지 안 남겼는지 확인하는 부분
     const [isYourRatings, setIsYourRatings] = useState<boolean>(false);
-    const [yourRatingInfo, setYourRatingInfo] = useState<ratingTypes[]>([]);
+    const [yourRatingInfo, setYourRatingInfo] = useState<RatingType[]>([]);
 
     // 별점과 댓글내용 // 
     const options: OptionType[] = [
@@ -98,7 +98,7 @@ const Details = ({ players, ratings }: idBoardTypes) => {
     const labels = ['★☆☆☆☆', '★★☆☆☆', '★★★☆☆', '★★★★☆', '★★★★★']
     const [selectedRating, setSelectedRating] = useState<ValueType<OptionType, false>>(options[0]);
     const [contents, setContents] = useState<string>("");
-    const [ratingList, setRatingList] = useState<ratingTypes[] | any>(ratings);
+    const [ratingList, setRatingList] = useState<RatingType[]>(ratings);
 
     const onchangeSelect = (item: ValueType<OptionType, false>) => {
         setSelectedRating(item);
@@ -158,7 +158,7 @@ const Details = ({ players, ratings }: idBoardTypes) => {
             const deleted = await fetch(`${process.env.SERVER_URL}/api/ratings/${raId}`, {
                 method: "Delete"
             });
-            setRatingList(ratingList.filter((val : ratingTypes) => {
+            setRatingList(ratingList.filter((val : RatingType) => {
                 return val._id !== raId;
             }))
             setYourRatingInfo([])
@@ -185,7 +185,7 @@ const Details = ({ players, ratings }: idBoardTypes) => {
             body: JSON.stringify({ contents, rating: selectedRating!.value })
         });
         const data = await res.json();
-        setRatingList(ratingList.map((val : ratingTypes) => {
+        setRatingList(ratingList.map((val : RatingType) => {
             return val._id === raId 
             ? {
                 _id: data.data._id, 
@@ -268,7 +268,7 @@ const Details = ({ players, ratings }: idBoardTypes) => {
             <div>
                 {!changeEditMode ? 
                 <Card className={styles.yourRatingInto}>
-                    {yourRatingInfo.map((res : ratingTypes) => {
+                    {yourRatingInfo.map((res : RatingType) => {
                         return (
                             <div key={res._id}>
                                 <Typography variant="h5">당신이 남겼던 평가</Typography>
@@ -342,7 +342,7 @@ const Details = ({ players, ratings }: idBoardTypes) => {
             </div>
             }
             <div>
-                {ratingList.map((rating : ratingTypes) => {
+                {ratingList.map((rating : RatingType) => {
                     return (
                         <Card className={styles.allratings} key={rating._id}>
                             <Typography>{rating.email}</Typography>

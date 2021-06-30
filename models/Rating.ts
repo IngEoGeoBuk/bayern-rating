@@ -1,6 +1,6 @@
 import mongoose, { Document, model, Model, Schema } from "mongoose"
 
-export interface ratingTypes extends Document {
+export interface RatingType extends Document {
     poId: string,
     email: string,
     contents: string,
@@ -26,4 +26,4 @@ const RatingSchema = new mongoose.Schema({
     },
 });
 
-export const Rating: Model<ratingTypes> = mongoose.models.Rating || model('Rating', RatingSchema);
+export const Rating: Model<RatingType> = mongoose.models.Rating || model('Rating', RatingSchema);
