@@ -1,0 +1,30 @@
+{
+  "name": "bayern",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
+    "@types/mongodb": "^3.6.18",
+    "@types/react-select": "^4.0.15",
+    "isomorphic-unfetch": "^3.1.0",
+    "mongoose": "^5.12.14",
+    "next": "11.0.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-google-login": "^5.2.2",
+    "react-select": "^4.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "17.0.11",
+    "eslint": "7.29.0",
+    "eslint-config-next": "11.0.0",
+    "typescript": "4.3.4"
+  }
+}

@@ -1,0 +1,37 @@
+.container {
+    text-align: center;
+}
+
+.title {
+    color: #0066b2;
+    text-shadow: 2px 1px 2px gray;
+}
+
+.selectBox {
+    /* width: 80%; */
+    width: 200px;
+}
+
+.input {
+    /* float: left; */
+    width: 600px;
+}
+
+.yourRatingInto {
+    margin: 20px;
+    padding: 10px;
+    align-items: center;
+}
+
+.box2 {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+
+.allratings {
+    margin: 20px;
+    padding: 10px;
+    align-items: center;
+}
+
