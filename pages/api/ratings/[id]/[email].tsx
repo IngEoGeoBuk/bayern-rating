@@ -1,10 +1,17 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import dbConnect from "../../../../utils/dbConnect";
-import Rating from '../../../../models/Rating.js';
+import { Rating } from '../../../../models/Rating';
 import { ratingTypes } from '../../../../types'
 
 interface dataTypes {
-    data?: ratingTypes[],
+    data?: {
+        _id?: string,
+        poId: string,
+        email: string,
+        contents: string,
+        rating: number,
+        __v?: number,
+    }[]
     success: boolean,
 }
 

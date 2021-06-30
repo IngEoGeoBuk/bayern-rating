@@ -1,5 +1,5 @@
 import dbConnect from "../../../utils/dbConnect";
-import Rating from '../../../models/Rating.js';
+import { Rating } from '../../../models/Rating';
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { gradeTypes } from '../../../types'
  

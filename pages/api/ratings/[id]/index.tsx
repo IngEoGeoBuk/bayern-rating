@@ -1,10 +1,26 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import dbConnect from "../../../../utils/dbConnect";
-import Rating from '../../../../models/Rating.js';
+import { Rating } from '../../../../models/Rating';
 import { ratingTypes } from '../../../../types'
+import { ObjectId } from 'bson';
 
 interface dataTypes {
-    data?: ratingTypes[],
+    data?: {
+        _id?: string,
+        poId: string,
+        email: string,
+        contents: string,
+        rating: number,
+        __v?: number,
+    }[] | {
+        _id?: string,
+        poId: string,
+        email: string,
+        contents: string,
+        rating: number,
+        __v?: number,
+    }
+    
     success: boolean,
 }
 
@@ -20,7 +36,8 @@ export default async (req: NextApiRequest, res: NextApiResponse<dataTypes>) => {
         // 별점 아이디에 해당하는 것들 다 불러오기(Details)
         case 'GET':
             try {
-                const ratings = await Rating.find({ "poId" : id });
+                const ratings = await Rating.find({ "poId" : {$in: [ (`${id}`)]} })!;
+                // const ratings = await Rating.find();
                 if (!ratings) {
                     return res.status(400).json({ success: false });
                 }

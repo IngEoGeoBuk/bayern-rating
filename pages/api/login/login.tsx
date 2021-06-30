@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { emailTypes } from '../../../types'
 
 interface dataTypes {
-    email?: string | string[]
+    email?: emailTypes
     message: string,
 }
 
