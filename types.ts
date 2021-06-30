@@ -9,8 +9,22 @@ export interface playerTypes {
     img: string
 }
 
+export interface modelPlayerTypes {
+    no: number,
+    name: string,
+    img: string
+}
+
 export interface ratingTypes {
     _id: string,
+    poId: string,
+    email: string,
+    contents: string,
+    rating: number,
+    __v?: number,
+}
+
+export interface modelRatingTypes {
     poId: string,
     email: string,
     contents: string,
