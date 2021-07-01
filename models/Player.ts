@@ -1,10 +1,5 @@
-import mongoose, { Document, model, Model, Schema } from "mongoose"
-
-export interface PlayerType extends Document {
-    no: number,
-    name: string,
-    img: string
-}
+import mongoose, { model, Model, Schema } from "mongoose"
+import { ModelPlayerType } from '../types'
 
 const PlayerSchema: Schema = new Schema({
     no: {
@@ -21,4 +16,4 @@ const PlayerSchema: Schema = new Schema({
     },
 });
 
-export const Player: Model<PlayerType> = mongoose.models.Player || model('Player', PlayerSchema);
+export const Player: Model<ModelPlayerType> = mongoose.models.Player || model('Player', PlayerSchema);
