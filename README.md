@@ -1,34 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![screensh](./full.gif)
 
-## Getting Started
+    Rate & Comment the Bayern Players Project!
 
-First, run the development server:
+    Next.js + MongoDB + Typescript + Google OAuth2.0
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+#
 
-Open [${process.env.SERVER_URL}](${process.env.SERVER_URL}) with your browser to see the result.
+[1] create next.config.js in root folder.  
+#
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [${process.env.SERVER_URL}/api/hello](${process.env.SERVER_URL}/api/hello). This endpoint can be edited in `pages/api/hello.tsx`.
+#
+[2] setting Google OAuth2.0
+#
+I used Google OAuth2.0 for login&logout system.
+The gif above did not show the contents about Google OAuth.
+If success, you can see it when click the login button
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+![screensh](./googleOauth.PNG)
 
-## Learn More
+#
+[3] setting config.js.
+#
+if you run this project locally, Setting 
 
-To learn more about Next.js, take a look at the following resources:
+SERVER_URL: "http://localhost:3000"
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+images: {
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+domains: ['localhost:3000'],
 
-## Deploy on Vercel
+}
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+and put your mongodb_url, google oauth2.0's id and password.
+like below
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![screensh](./nextjs-setting.PNG)
+
+Else run this project heroku or aws or vercel... and so on... 
+
+change SERVER_URL, images domains, mongodb_uri 
+
+#
+[4] make players collections and input no, name, img url.
+#
+
+sorry. I can't share image url with you.
+
+
+I think just modify and transform this project, you can use it as a review system such as watchapedia or imdb, 요기요, and so on...
